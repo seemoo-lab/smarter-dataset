@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """
 Smartphone-based Communication Networks for
 Emergency Response (smarter) Dataset
@@ -16,6 +17,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+
 
 import os
 import sys
@@ -44,7 +46,7 @@ def forAll(input_dir, file_ending, worker, args=None, pool_size=POOL_SIZE, use_t
     """Executes a function for each file in a folder, utilizing a pool of processes or threads"""
     start = time.time()
 
-    logging.debug("Starting %s ..." % worker.__name__)
+    #logging.debug("Starting %s ..." % worker.__name__)
 
     results = []
     processes = []
@@ -89,8 +91,6 @@ def forAll(input_dir, file_ending, worker, args=None, pool_size=POOL_SIZE, use_t
             results.append(result)
 
     pool.close()
-
-    logging.debug("All %s finished after %.2f seconds" % (worker.__name__, time.time()-start))
 
     return results
 
@@ -143,8 +143,6 @@ def parallelized_apply(dataframes, worker, args=None, pool_size=POOL_SIZE, use_t
     df = pandas.concat(df_list)
 
     pool.close()
-
-    logging.debug("All %s finished after %.2f seconds." % (worker.__name__, time.time()-start))
 
     return df
 
@@ -298,7 +296,8 @@ def sqlite_to_df(conn, table, select="*", where=None, order=None, index=None, pa
             query += " ORDER BY %s" % order
 
         parse_dates = {}
-        date_format = "%Y-%m-%d %H:%M:%S.%f"
+        #date_format = "%Y-%m-%d %H:%M:%S.%f"
+        date_format = "%Y-%m-%d %H:%M:%S"
         if index == "timestamp":
             parse_dates["timestamp"] = date_format
 
@@ -311,8 +310,10 @@ def sqlite_to_df(conn, table, select="*", where=None, order=None, index=None, pa
                 parse_dates[column] = "s"
 
         if parse_dates:
+            logging.info("Perform dates query: %s from %s" % (query, filename))
             df = pandas.read_sql(query, conn, parse_dates=parse_dates, index_col=index)
         else:
+            logging.info("Perform nondates query: %s" % (query))
             df = pandas.read_sql(query, conn, index_col=index)
     except pandas.io.sql.DatabaseError as e:
         if "no such table" in str(e):
@@ -323,7 +324,7 @@ def sqlite_to_df(conn, table, select="*", where=None, order=None, index=None, pa
 
     if df is not None and len(df) <= 0:
         if warn_empty:
-            logging.warning("%s empty query" % (filename))
+            logging.warning("%s empty query : %s" % (filename, query))
         df = None
 
     if self_opened:

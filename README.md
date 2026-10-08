@@ -16,12 +16,13 @@
  *                                                                         *
 \**************************************************************************/
 ```
-# SMARTER Field Test Dataset
+# SMARTER Field Test Dataset - Branch lalmon
 
-**This repository contains the dataset of the SMARTER field test from the paper:**
+**This repository contains an updated dataset of the SMARTER field test**
 
-* Flor Álvarez, Lars Almon, Patrick Lieser, Tobias Meuser, Yannick Dylla, Björn Richerzhagen, Matthias Hollick, and Ralf Steinmetz, Ralf - **[Conducting a Large-scale Field Test of a Smartphone-based Communication Network for Emergency Response](https://doi.org/10.1109/LCN44214.2019.8990765](https://doi.org/10.1145/3264844.3264845))**.
-In the proceedings of the 13th Workshop on Challenged Networks (CHANTS '18), New Delhi, India, 2018, https://doi.org/10.1145/3264844.326484
+The SMARTER dataset has been refined after the initial release.
+First by Flor Álvarez for her dissertation in: https://github.com/tu-fmaz/smarter_traces_field_test
+Then, further, by Lars Almon for his dissertation as presented here.
 
 ## Field Test
 
