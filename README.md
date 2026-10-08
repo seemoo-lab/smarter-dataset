@@ -21,7 +21,9 @@
 **This repository contains an updated dataset of the SMARTER field test**
 
 The SMARTER dataset has been refined after the initial release.
+
 First by Flor Álvarez for her dissertation in: https://github.com/tu-fmaz/smarter_traces_field_test
+
 Then, further, by Lars Almon for his dissertation as presented here.
 
 ## Field Test
